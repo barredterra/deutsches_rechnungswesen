@@ -79,13 +79,16 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    # "*": {
+    # 	"on_update": "method",
+    # 	"on_cancel": "method",
+    # 	"on_trash": "method"
+    # }
+    "Sales Invoice": {
+        "on_submit": "rechnungswesen_de.deutsches_rechnungswesen.attach_pdf.sales_invoice"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -119,4 +122,3 @@ app_license = "MIT"
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "rechnungswesen_de.event.get_events"
 # }
-
