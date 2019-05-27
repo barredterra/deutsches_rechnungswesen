@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include rechnungswesen_de *.css
+recursive-include rechnungswesen_de *.csv
+recursive-include rechnungswesen_de *.html
+recursive-include rechnungswesen_de *.ico
+recursive-include rechnungswesen_de *.js
+recursive-include rechnungswesen_de *.json
+recursive-include rechnungswesen_de *.md
+recursive-include rechnungswesen_de *.png
+recursive-include rechnungswesen_de *.py
+recursive-include rechnungswesen_de *.svg
+recursive-include rechnungswesen_de *.txt
+recursive-exclude rechnungswesen_de *.pyc
