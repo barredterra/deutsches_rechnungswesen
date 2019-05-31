@@ -5,21 +5,17 @@ from frappe.utils.file_manager import save_file
 from frappe.core.doctype.file.file import create_new_folder
 
 def sales_invoice(sinv, event):
-    folder = create_folders(_("Sales Invoice"), sinv.customer)
-    attach_pdf(sinv, sinv.name, folder)
+    sinv_folder = create_folder(_("Sales Invoice"), "Home")
+    cust_folder = create_folder(sinv.customer, sinv_folder)
+    attach_pdf(sinv, sinv.name, cust_folder)
 
-def create_folders(doctype, party):
+def create_folder(folder, parent):
     try:
-        create_new_folder(doctype, "Home")
+        create_new_folder(folder, "Home")
     except frappe.DuplicateEntryError:
-        frappe.db.rollback()
+        pass
 
-    try:
-        create_new_folder(party, "/".join(["Home", doctype]))
-    except frappe.DuplicateEntryError:
-        frappe.db.rollback()
-    
-    return "/".join(["Home", doctype, party])
+    return "/".join([parent, folder])
 
 def attach_pdf(doctype, name, folder):
     html = frappe.get_print(doctype, name)
